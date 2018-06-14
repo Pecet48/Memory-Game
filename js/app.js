@@ -72,6 +72,18 @@ function checkList(){
 }
 
 var card = document.querySelectorAll(".card");
+var resetButton = document.querySelector(".restart");
+
+function resetGame() {
+    for(var i=0; i<card.length; i++){
+        card[i].className = 'card';
+        count = 0;
+        openCards = [];
+        cardsValue = [];
+    }
+}
+
+resetButton.addEventListener("click", resetGame);
 
 for(var i=0; i<card.length; i++){
     card[i].addEventListener("click", function(){
