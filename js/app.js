@@ -49,9 +49,10 @@ function showCard(x) {
 function checkMatch() {
     var firstCard = cardsValue[0];
     var secondCard = cardsValue[1];
+    moves++;
+    document.querySelector('.moves').textContent = moves;
 
     if(firstCard == secondCard) {
-        console.log("UDAŁO SIĘ");
         count++;
         openCards[0].className = 'card match';
         openCards[1].className = 'card match';
@@ -60,7 +61,6 @@ function checkMatch() {
 
     } else {
         setTimeout(function(){
-            console.log("Niestety :(");
             openCards[0].className = 'card';
             openCards[1].className = 'card';
             openCards = [];
@@ -87,6 +87,7 @@ function resetGame() {
     for(var i=0; i<card.length; i++){
         card[i].className = 'card';
         count = 0;
+        moves = 0;
         openCards = [];
         cardsValue = [];
     }
