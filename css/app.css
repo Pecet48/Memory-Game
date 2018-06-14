@@ -44,7 +44,7 @@ h1 {
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
@@ -89,6 +89,7 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    display: none;
 }
 
 .score-panel .stars {
@@ -106,4 +107,44 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*
+ * Styles for the Win Container
+ */
+
+.win-container {
+    display: block;
+    width: auto;
+    height: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.win-container h2 {
+    color: #02ccba;
+    font-size: 50px;
+}
+
+.win-container h3 {
+    font-size: 25px;
+}
+
+#play-again {
+    width: 250px;
+    height: auto;
+    padding: 15px;
+    font-size: 20px;
+    color: #fff;
+    margin: auto;
+    margin-top: 50px;
+    border: none;
+    box-shadow: 10px 10px 25px black;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+#play-again:hover {
+    box-shadow: 0 0 10px black;
 }
