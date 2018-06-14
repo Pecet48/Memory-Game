@@ -44,7 +44,7 @@ h1 {
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: none;
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
@@ -89,7 +89,7 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
-    display: none;
+    display: block;
 }
 
 .score-panel .stars {
@@ -114,7 +114,7 @@ h1 {
  */
 
 .win-container {
-    display: block;
+    display: none;
     width: auto;
     height: auto;
     margin: auto;

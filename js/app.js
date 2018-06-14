@@ -28,6 +28,14 @@ function shuffle(array) {
 var openCards = new Array;
 var cardsValue = new Array;
 var count = 0;
+var moves = 0;
+
+function afterWinGame() {
+    document.querySelector('.win-container').style.display = 'block';
+    document.querySelector('.score-panel').style.display = 'none';
+    document.querySelector('.deck').style.display = 'none';
+    document.querySelector('#show-moves').textContent = moves;
+}
 
 
 function showCard(x) {
@@ -61,7 +69,7 @@ function checkMatch() {
     }
 
     if(count == 8) {
-        console.log("BRAWO WYGRALES !");
+        afterWinGame();
     }
 }
 
@@ -73,6 +81,7 @@ function checkList(){
 
 var card = document.querySelectorAll(".card");
 var resetButton = document.querySelector(".restart");
+var newGameButton = document.querySelector("#play-again");
 
 function resetGame() {
     for(var i=0; i<card.length; i++){
@@ -84,6 +93,15 @@ function resetGame() {
 }
 
 resetButton.addEventListener("click", resetGame);
+
+function newGame() {
+    resetGame();
+    document.querySelector('.win-container').style.display = 'none';
+    document.querySelector('.score-panel').style.display = 'block';
+    document.querySelector('.deck').style.display = 'flex';
+}
+
+newGameButton.addEventListener("click", newGame);
 
 for(var i=0; i<card.length; i++){
     card[i].addEventListener("click", function(){
