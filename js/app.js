@@ -39,7 +39,7 @@ function afterWinGame() {
 
 
 function showCard(x) {
-    if(x.className === 'card' || x.className === 'card open show' ){
+    if(x.className === 'card'){
         x.className = 'card open show';
         openCards.push(x);
         cardsValue.push(x.firstChild.nextSibling.className);
@@ -107,8 +107,10 @@ newGameButton.addEventListener("click", newGame);
 
 for(var i=0; i<card.length; i++){
     card[i].addEventListener("click", function(){
-        showCard(this);
-        checkList();
+        if(openCards.length < 2 && cardsValue.length < 2){
+            showCard(this);
+            checkList();
+        }
     });
 }
 
