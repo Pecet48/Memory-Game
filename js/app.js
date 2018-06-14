@@ -90,6 +90,7 @@ function resetGame() {
         moves = 0;
         openCards = [];
         cardsValue = [];
+        document.querySelector('#show-moves').textContent = moves;
     }
 }
 
