@@ -28,18 +28,23 @@ function shuffle(array) {
 var card = document.querySelectorAll(".card");
 var resetButton = document.querySelector(".restart");
 var newGameButton = document.querySelector("#play-again");
+var timer = document.querySelector("#timer");
 var ratingStars = document.querySelector('.stars').children;
 var showRatingStars = document.querySelector('.show-stars').children;
 var openCards = new Array;
 var cardsValue = new Array;
 var count = 0;
 var moves = 0;
+var t1 = 0;
+var t2 = 0;
 
 function afterWinGame() {
     document.querySelector('.win-container').style.display = 'block';
     document.querySelector('.score-panel').style.display = 'none';
     document.querySelector('.deck').style.display = 'none';
     document.querySelector('#show-moves').textContent = moves;
+    t2 = performance.now();
+    timer.textContent = t2-t1;
     if(moves > 9) {
         showRatingStars[2].style.visibility = 'hidden';
     }
@@ -109,6 +114,7 @@ function resetGame() {
         document.querySelector('.moves').textContent = moves;
         ratingStars[2].style.visibility = 'visible';
         ratingStars[1].style.visibility = 'visible';
+        t1 = performance.now();
     }
 }
 
