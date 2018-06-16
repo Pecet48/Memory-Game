@@ -25,6 +25,33 @@ function shuffle(array) {
     return array;
 }
 
+var deck = document.querySelector(".deck");
+var typeCards = ['fa fa-diamond','fa fa-diamond','fa fa-paper-plane-o','fa fa-paper-plane-o','fa fa-anchor','fa fa-anchor','fa fa-bolt','fa fa-bolt','fa fa-cube','fa fa-cube','fa fa-leaf','fa fa-leaf','fa fa-bicycle','fa fa-bicycle','fa fa-bomb','fa fa-bomb'];
+
+function createCard() {
+
+    var currentCard;
+    var randomIndex;
+
+    for(var i=15; i>=0; i--){
+
+        randomIndex = Math.floor(Math.random() * i);
+        currentCard = typeCards[randomIndex];
+
+        var li = document.createElement("li");
+        li.className += "card";
+        var elmI = document.createElement("i");
+        elmI.className += currentCard;
+
+        li.appendChild(elmI);
+        deck.appendChild(li);
+
+        typeCards.splice(randomIndex, 1);
+    }
+}
+
+createCard();
+
 var card = document.querySelectorAll(".card");
 var resetButton = document.querySelector(".restart");
 var newGameButton = document.querySelector("#play-again");
@@ -58,7 +85,7 @@ function showCard(x) {
     if(x.className === 'card'){
         x.className = 'card open show';
         openCards.push(x);
-        cardsValue.push(x.firstChild.nextSibling.className);
+        cardsValue.push(x.firstChild.className);
     }
 }
 
