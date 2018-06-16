@@ -130,6 +130,19 @@ h1 {
     font-size: 25px;
 }
 
+.show-stars {
+    font-size: 60px;
+    color: #02b3e4;
+    margin: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.show-stars li {
+    list-style: none;
+    display: inline-block;
+}
+
 #play-again {
     width: 250px;
     height: auto;

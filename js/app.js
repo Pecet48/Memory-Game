@@ -25,6 +25,11 @@ function shuffle(array) {
     return array;
 }
 
+var card = document.querySelectorAll(".card");
+var resetButton = document.querySelector(".restart");
+var newGameButton = document.querySelector("#play-again");
+var ratingStars = document.querySelector('.stars').children;
+var showRatingStars = document.querySelector('.show-stars').children;
 var openCards = new Array;
 var cardsValue = new Array;
 var count = 0;
@@ -35,6 +40,12 @@ function afterWinGame() {
     document.querySelector('.score-panel').style.display = 'none';
     document.querySelector('.deck').style.display = 'none';
     document.querySelector('#show-moves').textContent = moves;
+    if(moves > 9) {
+        showRatingStars[2].style.visibility = 'hidden';
+    }
+    if(moves > 16) {
+        showRatingStars[1].style.visibility = 'hidden';
+    }
 }
 
 
@@ -46,11 +57,20 @@ function showCard(x) {
     }
 }
 
+function checkRating() {
+    if(moves > 9) {
+        ratingStars[2].style.visibility = 'hidden';
+    } else if(moves > 16) {
+        ratingStars[1].style.visibility = 'hidden';
+    }
+}
+
 function checkMatch() {
     var firstCard = cardsValue[0];
     var secondCard = cardsValue[1];
     moves++;
     document.querySelector('.moves').textContent = moves;
+    checkRating();
 
     if(firstCard == secondCard) {
         count++;
@@ -79,10 +99,6 @@ function checkList(){
     }
 }
 
-var card = document.querySelectorAll(".card");
-var resetButton = document.querySelector(".restart");
-var newGameButton = document.querySelector("#play-again");
-
 function resetGame() {
     for(var i=0; i<card.length; i++){
         card[i].className = 'card';
@@ -90,7 +106,9 @@ function resetGame() {
         moves = 0;
         openCards = [];
         cardsValue = [];
-        document.querySelector('#show-moves').textContent = moves;
+        document.querySelector('.moves').textContent = moves;
+        ratingStars[2].style.visibility = 'visible';
+        ratingStars[1].style.visibility = 'visible';
     }
 }
 
@@ -101,6 +119,8 @@ function newGame() {
     document.querySelector('.win-container').style.display = 'none';
     document.querySelector('.score-panel').style.display = 'block';
     document.querySelector('.deck').style.display = 'flex';
+    showRatingStars[2].style.visibility = 'visible';
+    showRatingStars[1].style.visibility = 'visible';
 }
 
 newGameButton.addEventListener("click", newGame);
