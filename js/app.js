@@ -39,7 +39,6 @@ function createCard() {
         }
     }  
 
-    console.log(deck);
     var typeCards = ['fa fa-diamond','fa fa-diamond','fa fa-paper-plane-o','fa fa-paper-plane-o','fa fa-anchor','fa fa-anchor','fa fa-bolt','fa fa-bolt','fa fa-cube','fa fa-cube','fa fa-leaf','fa fa-leaf','fa fa-bicycle','fa fa-bicycle','fa fa-bomb','fa fa-bomb'];
 
     var currentCard;
@@ -158,9 +157,9 @@ function resetGame() {
         ratingStars[1].style.visibility = 'visible';
     }
     countRestart++;
+    clearInterval(timerInterval);
     createCard();
     addEventCard(card);
-    clearInterval(timerInterval);
 }
 
 resetButton.addEventListener("click", resetGame);
@@ -203,7 +202,6 @@ function startTimer() {
     timer.textContent = "0m 0s";
     countSecondsTimer = 0;
     countMinutesTimer = 0;
-    console.log("test timer");
     timerInterval = setInterval(workTimer,1000);
 }
 
