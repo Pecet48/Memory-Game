@@ -26,6 +26,7 @@
 }*/
 
 var deck = document.querySelector(".deck");
+var timer = document.querySelector("#timer");
 var countRestart = 0;
 
 function createCard() {
@@ -59,9 +60,12 @@ function createCard() {
 
         typeCards.splice(randomIndex, 1);
 
-        card = document.querySelectorAll(".card");
-        addEventCard(card);
     }
+
+    card = document.querySelectorAll(".card");
+    addEventCard(card);
+    startTimer();
+
 }
 
 createCard();
@@ -69,7 +73,6 @@ createCard();
 var card = document.querySelectorAll(".card");
 var resetButton = document.querySelector(".restart");
 var newGameButton = document.querySelector("#play-again");
-var timer = document.querySelector("#timer");
 var ratingStars = document.querySelector('.stars').children;
 var showRatingStars = document.querySelector('.show-stars').children;
 var openCards = new Array;
@@ -78,14 +81,16 @@ var count = 0;
 var moves = 0;
 
 function afterWinGame() {
+    clearInterval(timerInterval);
     document.querySelector('.win-container').style.display = 'block';
     document.querySelector('.score-panel').style.display = 'none';
     document.querySelector('.deck').style.display = 'none';
+    document.querySelector('#timer2').textContent = countMinutesTimer + "m " + countSecondsTimer + "s";
     document.querySelector('#show-moves').textContent = moves;
-    if(moves > 9) {
+    if(moves > 10) {
         showRatingStars[2].style.visibility = 'hidden';
     }
-    if(moves > 16) {
+    if(moves > 18) {
         showRatingStars[1].style.visibility = 'hidden';
     }
 }
@@ -155,6 +160,7 @@ function resetGame() {
     countRestart++;
     createCard();
     addEventCard(card);
+    clearInterval(timerInterval);
 }
 
 resetButton.addEventListener("click", resetGame);
@@ -179,6 +185,26 @@ function addEventCard(card) {
             }
         });
     }
+}
+
+var countSecondsTimer = 0;
+var countMinutesTimer = 0;
+
+function workTimer() {
+    countSecondsTimer++;
+    if(countSecondsTimer>59){
+        countSecondsTimer = 0;
+        countMinutesTimer++;
+    }
+    timer.textContent = countMinutesTimer + "m " + countSecondsTimer + "s";
+}
+
+function startTimer() {
+    timer.textContent = "0m 0s";
+    countSecondsTimer = 0;
+    countMinutesTimer = 0;
+    console.log("test timer");
+    timerInterval = setInterval(workTimer,1000);
 }
 
 
