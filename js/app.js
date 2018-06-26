@@ -11,7 +11,7 @@
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+/*function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -23,12 +23,23 @@ function shuffle(array) {
     }
 
     return array;
-}
+}*/
 
 var deck = document.querySelector(".deck");
-var typeCards = ['fa fa-diamond','fa fa-diamond','fa fa-paper-plane-o','fa fa-paper-plane-o','fa fa-anchor','fa fa-anchor','fa fa-bolt','fa fa-bolt','fa fa-cube','fa fa-cube','fa fa-leaf','fa fa-leaf','fa fa-bicycle','fa fa-bicycle','fa fa-bomb','fa fa-bomb'];
+var countRestart = 0;
 
 function createCard() {
+
+    if(countRestart > 0){
+        for(var j=0; j<4; j++){
+            for(var i=4; i>0; i--){
+                deck.removeChild(deck.childNodes[i]);
+            }
+        }
+    }  
+
+    console.log(deck);
+    var typeCards = ['fa fa-diamond','fa fa-diamond','fa fa-paper-plane-o','fa fa-paper-plane-o','fa fa-anchor','fa fa-anchor','fa fa-bolt','fa fa-bolt','fa fa-cube','fa fa-cube','fa fa-leaf','fa fa-leaf','fa fa-bicycle','fa fa-bicycle','fa fa-bomb','fa fa-bomb'];
 
     var currentCard;
     var randomIndex;
@@ -47,6 +58,9 @@ function createCard() {
         deck.appendChild(li);
 
         typeCards.splice(randomIndex, 1);
+
+        card = document.querySelectorAll(".card");
+        addEventCard(card);
     }
 }
 
@@ -62,16 +76,12 @@ var openCards = new Array;
 var cardsValue = new Array;
 var count = 0;
 var moves = 0;
-var t1 = 0;
-var t2 = 0;
 
 function afterWinGame() {
     document.querySelector('.win-container').style.display = 'block';
     document.querySelector('.score-panel').style.display = 'none';
     document.querySelector('.deck').style.display = 'none';
     document.querySelector('#show-moves').textContent = moves;
-    t2 = performance.now();
-    timer.textContent = t2-t1;
     if(moves > 9) {
         showRatingStars[2].style.visibility = 'hidden';
     }
@@ -141,8 +151,10 @@ function resetGame() {
         document.querySelector('.moves').textContent = moves;
         ratingStars[2].style.visibility = 'visible';
         ratingStars[1].style.visibility = 'visible';
-        t1 = performance.now();
     }
+    countRestart++;
+    createCard();
+    addEventCard(card);
 }
 
 resetButton.addEventListener("click", resetGame);
@@ -158,13 +170,15 @@ function newGame() {
 
 newGameButton.addEventListener("click", newGame);
 
-for(var i=0; i<card.length; i++){
-    card[i].addEventListener("click", function(){
-        if(openCards.length < 2 && cardsValue.length < 2){
-            showCard(this);
-            checkList();
-        }
-    });
+function addEventCard(card) {
+    for(var i=0; i<card.length; i++){
+        card[i].addEventListener("click", function(){
+            if(openCards.length < 2 && cardsValue.length < 2){
+                showCard(this);
+                checkList();
+            }
+        });
+    }
 }
 
 
