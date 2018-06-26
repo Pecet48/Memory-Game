@@ -9,7 +9,7 @@ Project from Udacity course. Simple memory game.
 
 ## Instructions
 
-######How to play?
+###How to play?
 
 1. You need to download project:
 * Click download and open zip, or
