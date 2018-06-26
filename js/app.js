@@ -29,7 +29,7 @@ var deck = document.querySelector(".deck");
 var timer = document.querySelector("#timer");
 var countRestart = 0;
 
-function createCard() {
+function createCard() { // Create cards for play
 
     if(countRestart > 0){
         for(var j=0; j<4; j++){
@@ -79,7 +79,7 @@ var cardsValue = new Array;
 var count = 0;
 var moves = 0;
 
-function afterWinGame() {
+function afterWinGame() { // Show pop up after win game
     clearInterval(timerInterval);
     document.querySelector('.win-container').style.display = 'block';
     document.querySelector('.score-panel').style.display = 'none';
@@ -95,7 +95,7 @@ function afterWinGame() {
 }
 
 
-function showCard(x) {
+function showCard(x) { // Show clicked card
     if(x.className === 'card'){
         x.className = 'card open show';
         openCards.push(x);
@@ -103,7 +103,7 @@ function showCard(x) {
     }
 }
 
-function checkRating() {
+function checkRating() { // Check ratings and set stars
     if(moves > 9) {
         ratingStars[2].style.visibility = 'hidden';
     } else if(moves > 16) {
@@ -111,7 +111,7 @@ function checkRating() {
     }
 }
 
-function checkMatch() {
+function checkMatch() { // Check the cards
     var firstCard = cardsValue[0];
     var secondCard = cardsValue[1];
     moves++;
@@ -139,13 +139,13 @@ function checkMatch() {
     }
 }
 
-function checkList(){
+function checkList(){ // Check how much cards is open
     if(openCards.length >= 2){
         checkMatch();
     }
 }
 
-function resetGame() {
+function resetGame() { // Reset everything for start new game
     for(var i=0; i<card.length; i++){
         card[i].className = 'card';
         count = 0;
@@ -164,7 +164,7 @@ function resetGame() {
 
 resetButton.addEventListener("click", resetGame);
 
-function newGame() {
+function newGame() { // Start new game
     resetGame();
     document.querySelector('.win-container').style.display = 'none';
     document.querySelector('.score-panel').style.display = 'block';
@@ -175,7 +175,7 @@ function newGame() {
 
 newGameButton.addEventListener("click", newGame);
 
-function addEventCard(card) {
+function addEventCard(card) { // Add event for each card
     for(var i=0; i<card.length; i++){
         card[i].addEventListener("click", function(){
             if(openCards.length < 2 && cardsValue.length < 2){
@@ -189,7 +189,7 @@ function addEventCard(card) {
 var countSecondsTimer = 0;
 var countMinutesTimer = 0;
 
-function workTimer() {
+function workTimer() { // Function for timer
     countSecondsTimer++;
     if(countSecondsTimer>59){
         countSecondsTimer = 0;
@@ -198,7 +198,7 @@ function workTimer() {
     timer.textContent = countMinutesTimer + "m " + countSecondsTimer + "s";
 }
 
-function startTimer() {
+function startTimer() { // Start timer for new game
     timer.textContent = "0m 0s";
     countSecondsTimer = 0;
     countMinutesTimer = 0;
